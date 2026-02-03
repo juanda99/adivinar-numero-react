@@ -1,33 +1,25 @@
 import './style.css'
 import ScoreBoard from '../ScoreBoard'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 const secretNumber = Math.trunc(Math.random() * 20) + 1
 
 function Game() {
   const [score, setScore] = useState(20)
   const [highscore, setHighscore] = useState(0)
-  const [message, setMessage] = useState('Empieza a adivinar...')
+  const [guessNumber, setGuessNumber] = useState(null)
   const inputRef = useRef(null)
 
-  const handleCheck = () => {
-    const guessNumber = Number(inputRef.current.value)
-    // comprobamos si hemos acertado o no...
-    if (guessNumber === secretNumber) {
-      setMessage('Has ganado!')
-      if (score > highscore) {
-        setHighscore(score)
-      }
-    } else if (guessNumber > secretNumber) {
-      setMessage('Demasiado alto!')
-      if (score === 1) setMessage('Has perdido el juego!')
-      setScore(score - 1)
-    } else if (guessNumber < secretNumber) {
-      setMessage('Demasiado bajo!')
-      if (score === 1) setMessage('Has perdido el juego!')
+  const handleCheck = () => setGuessNumber(Number(inputRef.current.value))
+
+  useEffect(() => {
+    console.log('Me han ejecutado por el cambio de guessNumber')
+    if (secretNumber !== guessNumber && guessNumber !== null) {
+      console.log(secretNumber, guessNumber)
+      // disminuimos el score
       setScore(score - 1)
     }
-  }
+  }, [guessNumber])
 
   return (
     <main>
@@ -39,7 +31,12 @@ function Game() {
           Check!
         </button>
       </section>
-      <ScoreBoard score={score} highscore={highscore} message={message} />
+      <ScoreBoard
+        score={score}
+        highscore={highscore}
+        secretNumber={secretNumber}
+        guessNumber={guessNumber}
+      />
     </main>
   )
 }

@@ -1,5 +1,19 @@
 import './style.css'
-function ScoreBoard({ score, highscore: record, message }) {
+function ScoreBoard({ score, highscore: record, secretNumber, guessNumber }) {
+  // en función de los props que recibimos, mostramos unos u otros mensajes
+  let message = 'Empieza a adivinar...'
+  if (guessNumber) {
+    if (guessNumber == secretNumber) {
+      message = 'Has ganado!'
+    } else if (score === 0) {
+      message = 'Has perdido el juego!'
+    } else if (guessNumber > secretNumber) {
+      message = 'Demasiado alto!'
+    } else if (guessNumber < secretNumber) {
+      message = 'Demasiado bajo!'
+    }
+  }
+
   return (
     <section className="right">
       <p className="message">{message}</p>
