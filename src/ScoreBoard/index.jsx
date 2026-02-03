@@ -1,14 +1,13 @@
 import './style.css'
-function ScoreBoard(props) {
-  console.log(props)
+function ScoreBoard({ score, highscore: record, message }) {
   return (
     <section className="right">
-      <p className="message">Start guessing...</p>
+      <p className="message">{message}</p>
       <p className="label-score">
-        💯 Score: <span className="score">{props.score}</span>
+        💯 Score: <span className="score">{score}</span>
       </p>
       <p className="label-highscore">
-        🥇 Highscore: <span className="highscore">{props.highscore}</span>
+        🥇 Highscore: <span className="highscore">{record}</span>
       </p>
     </section>
   )
