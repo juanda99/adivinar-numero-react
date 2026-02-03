@@ -1,21 +1,16 @@
 import './style.css'
+import ScoreBoard from '../ScoreBoard'
 function Game() {
+  const score = 20
+  const highscore = 0
   return (
     <main>
-      <button class="btn again">Again!</button>
-      <section class="left">
-        <input type="number" class="guess" />
-        <button class="btn check">Check!</button>
+      <button className="btn again">Again!</button>
+      <section className="left">
+        <input type="number" className="guess" />
+        <button className="btn check">Check!</button>
       </section>
-      <section class="right">
-        <p class="message">Start guessing...</p>
-        <p class="label-score">
-          💯 Score: <span class="score">20</span>
-        </p>
-        <p class="label-highscore">
-          🥇 Highscore: <span class="highscore">0</span>
-        </p>
-      </section>
+      <ScoreBoard score={score} highscore={highscore} />
     </main>
   )
 }

@@ -13,11 +13,6 @@ main {
   align-items: center;
 }
 
-.right {
-  width: 52rem;
-  font-size: 2rem;
-}
-
 /* ELEMENTS STYLE */
 
 .again {
@@ -51,13 +46,4 @@ main {
 
 .btn:hover {
   background-color: #ccc;
-}
-
-.message {
-  margin-bottom: 8rem;
-  height: 3rem;
-}
-
-.label-score {
-  margin-bottom: 2rem;
 }
